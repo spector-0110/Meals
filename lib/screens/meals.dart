@@ -3,9 +3,9 @@ import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/widgets/meal_item.dart';
 
 class MealScreen extends StatelessWidget {
-  MealScreen({super.key, required this.meals, required this.title});
+  MealScreen({super.key, required this.meals, this.title});
 
-  String title;
+  String? title;
   final List<Meal> meals;
 
   @override
@@ -36,9 +36,10 @@ class MealScreen extends StatelessWidget {
               .length, // important so that flutter gets to know the length of the list
           itemBuilder: (ctx, index) => MealItem(meal: meals[index]));
     }
+    if (title == null) return content;
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(title!),
       ),
       body: content,
     );

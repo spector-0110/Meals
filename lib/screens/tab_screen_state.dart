@@ -3,7 +3,7 @@ import 'package:meals_app/screens/categories.dart';
 import 'package:meals_app/screens/meals.dart';
 
 class TabsScreen extends StatefulWidget {
-  const TabsScreen();
+  const TabsScreen({super.key});
 
   @override
   State<TabsScreen> createState() {
@@ -25,8 +25,10 @@ class _TabsScreenState extends State<TabsScreen> {
     Widget activePage = const CategoriesScreen();
     var activePageTitle = 'Categories';
     if (_selectedPageIndex == 1) {
-      activePage = MealScreen(meals: [], title: 'favorites');
-      activePageTitle = 'favorites';
+      activePage = MealScreen(
+        meals: [],
+      );
+      activePageTitle = 'Your Favorites';
     }
 
     return Scaffold(
