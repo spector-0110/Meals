@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MainDrawer extends StatelessWidget {
-  MainDrawer({super.key});
+  const MainDrawer({super.key, required this.onSelectFilters});
+
+  final void Function(String) onSelectFilters;
 
   @override
   Widget build(context) {
@@ -30,35 +32,35 @@ class MainDrawer extends StatelessWidget {
             ),
             Text(
               'Cooking Up...',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleSmall!
-                  .copyWith(color: Theme.of(context).colorScheme.primary),
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  color: Theme.of(context).colorScheme.primary, fontSize: 20),
             ),
           ]),
         ),
-
         ListTile(
           leading: Icon(
             Icons.settings,
             size: 24,
             color: Theme.of(context).colorScheme.onBackground,
           ),
-          onTap: () {},
+          onTap: () {
+            onSelectFilters('filters');
+          },
           title: Text(
             'Filters',
             style: Theme.of(context).textTheme.titleMedium!.copyWith(
                 color: Theme.of(context).colorScheme.primary, fontSize: 20),
           ),
         ),
-        
         ListTile(
           leading: Icon(
             Icons.restaurant,
             size: 24,
             color: Theme.of(context).colorScheme.onBackground,
           ),
-          onTap: () {},
+          onTap: () {
+          onSelectFilters('Meals');
+          },
           title: Text(
             'Meals',
             style: Theme.of(context).textTheme.titleMedium!.copyWith(
