@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:meals_app/data/dummy_data.dart';
 import 'package:meals_app/models/meal.dart';
@@ -14,7 +16,10 @@ const kInitialFilters = {
 };
 
 class TabsScreen extends StatefulWidget {
-  const TabsScreen({super.key});
+  const TabsScreen(
+      {super.key, required this.onChangeMode, this.currentMode = true});
+  final Function(bool) onChangeMode;
+  final currentMode;
 
   @override
   State<TabsScreen> createState() {
@@ -105,9 +110,21 @@ class _TabsScreenState extends State<TabsScreen> {
     return Scaffold(
       drawer: MainDrawer(
         onSelectFilters: _setScreen,
+        onChangeMode: widget.onChangeMode,
+        currentMode: widget.currentMode,
       ),
       appBar: AppBar(
         title: Text(activePageTitle),
+        actions: [
+          IconButton(
+            onPressed: () {
+              widget.onChangeMode(widget.currentMode);
+            },
+            icon: widget.currentMode
+                ? const Icon(Icons.sunny)
+                : const Icon(Icons.dark_mode),
+          )
+        ],
       ),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(

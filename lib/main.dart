@@ -6,10 +6,15 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   MyApp({super.key});
 
-  final theme = ThemeData(
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final _lightTheme = ThemeData(
     useMaterial3: true,
     colorScheme: ColorScheme.fromSeed(
       brightness: Brightness.light,
@@ -18,11 +23,27 @@ class MyApp extends StatelessWidget {
     textTheme: GoogleFonts.latoTextTheme(),
   );
 
+  final _darkTheme = ThemeData(
+    useMaterial3: true,
+    colorScheme: ColorScheme.fromSeed(
+      brightness: Brightness.dark,
+      seedColor: const Color.fromARGB(255, 131, 57, 0),
+    ),
+    textTheme: GoogleFonts.latoTextTheme(),
+  );
+  bool currentMode = true;
+  void onChangeMode(bool initialMode) {
+    setState(() {
+      initialMode = !initialMode;
+      currentMode = !currentMode;
+    });
+  }
+
   @override
   Widget build(context) {
     return MaterialApp(
-      theme: theme,
-      home: const TabsScreen(),
+      theme: currentMode ? _lightTheme : _darkTheme,
+      home: TabsScreen(onChangeMode: onChangeMode ,currentMode:currentMode ),
     );
   }
 }

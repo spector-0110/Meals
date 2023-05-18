@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
 class MainDrawer extends StatelessWidget {
-  const MainDrawer({super.key, required this.onSelectFilters});
+  MainDrawer(
+      {super.key, required this.onSelectFilters, required this.onChangeMode,required this.currentMode});
 
   final void Function(String) onSelectFilters;
+  final Function(bool) onChangeMode;
+  final currentMode;
+
+  // bool isLightMode = false;
 
   @override
   Widget build(context) {
@@ -59,7 +64,7 @@ class MainDrawer extends StatelessWidget {
             color: Theme.of(context).colorScheme.onBackground,
           ),
           onTap: () {
-          onSelectFilters('Meals');
+            onSelectFilters('Meals');
           },
           title: Text(
             'Meals',
@@ -67,6 +72,12 @@ class MainDrawer extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primary, fontSize: 20),
           ),
         ),
+        Switch(
+          value: currentMode,
+          onChanged: (value) {
+            onChangeMode(value);
+          },
+        )
       ]),
     );
   }
