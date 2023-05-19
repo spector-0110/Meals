@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 class MainDrawer extends StatelessWidget {
   MainDrawer(
-      {super.key, required this.onSelectFilters, required this.onChangeMode,required this.currentMode});
+      {super.key,
+      required this.onSelectFilters,
+      required this.onChangeMode,
+      required this.currentMode});
 
   final void Function(String) onSelectFilters;
   final Function(bool) onChangeMode;
@@ -72,11 +75,27 @@ class MainDrawer extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primary, fontSize: 20),
           ),
         ),
-        Switch(
-          value: currentMode,
-          onChanged: (value) {
-            onChangeMode(value);
-          },
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Row(
+            children: [
+              Switch(
+                splashRadius: 100,
+                value: currentMode,
+                onChanged: (value) {
+                  onChangeMode(value);
+                },
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              Text(
+                currentMode ? 'Dark' : 'Light',
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    fontSize: 18, color: Theme.of(context).colorScheme.primary),
+              ),
+            ],
+          ),
         )
       ]),
     );

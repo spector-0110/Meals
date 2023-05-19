@@ -115,16 +115,6 @@ class _TabsScreenState extends State<TabsScreen> {
       ),
       appBar: AppBar(
         title: Text(activePageTitle),
-        actions: [
-          IconButton(
-            onPressed: () {
-              widget.onChangeMode(widget.currentMode);
-            },
-            icon: widget.currentMode
-                ? const Icon(Icons.sunny)
-                : const Icon(Icons.dark_mode),
-          )
-        ],
       ),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
