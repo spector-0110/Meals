@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meals_app/screens/tab_screen_state.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -43,7 +44,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(context) {
     return MaterialApp(
       theme: currentMode ? _lightTheme : _darkTheme,
-      home: TabsScreen(onChangeMode: onChangeMode ,currentMode:currentMode ),
+      home: TabsScreen(onChangeMode: onChangeMode, currentMode: currentMode),
     );
   }
 }

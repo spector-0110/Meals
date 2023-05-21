@@ -8,11 +8,9 @@ import 'package:meals_app/models/category.dart';
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen(
       {super.key,
-      required this.onTapFavoriteIcon,
       required this.availableMeals});
 
   final List<Meal> availableMeals;
-  final void Function(Meal) onTapFavoriteIcon;
   void _selectCategory(BuildContext context, Category category) {
     final fiteredList = availableMeals
         .where((meal) => meal.categories.contains(category.id))
@@ -23,7 +21,6 @@ class CategoriesScreen extends StatelessWidget {
           builder: (ctx) => MealScreen(
                 title: category.title,
                 meals: fiteredList,
-                onTapFavoriteIcon: onTapFavoriteIcon,
               )),
     );
   }
