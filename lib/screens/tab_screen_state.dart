@@ -41,7 +41,7 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
 
     if (identifier == 'filters') {
       await Navigator.of(context).push<Map<Filters, bool>>(
-          MaterialPageRoute(builder: (ctx) => const FiltersScreen()));
+          MaterialPageRoute(builder: (ctx) => FiltersScreen()));
     }
   }
 
